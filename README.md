@@ -14,6 +14,7 @@ Both "Home" and "About" clickable
 # API:
  - /holidayapi.com
  - /Google fonts
+ - Twitter follow button added
 
 # Deploying to the web:
 - use live server or 'http-server' command in terminal and follow the link provided
