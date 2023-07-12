@@ -116,9 +116,11 @@ function addCartClicked(event){
     addProductToCart(title, price, productImg);
     updateTotal()
 }
+
+
 function addProductToCart(title, price, productImg) {
-    let cartItems = document.getElementsByClassName('cart-content')[0];
-    let cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
+    let cartItems = document.querySelector('.cart-content');
+    let cartItemsNames = cartItems.querySelectorAll('.cart-product-title');
 
     // Check if the product is already in the cart
     for (let i = 0; i < cartItemsNames.length; i++) {
@@ -155,6 +157,7 @@ function addProductToCart(title, price, productImg) {
 }
 
 
+
 //Update total
 function updateTotal(){
     let cartContent = document.querySelector('.cart-content');
@@ -176,3 +179,47 @@ function updateTotal(){
         totalPriceElement.innerText = "$" + total.toFixed(2);
     }
 }
+
+//adding new ball listing
+
+document.addEventListener('DOMContentLoaded', function() {
+    const addForm = document.getElementById('addForm');
+    const shopContent = document.querySelector('.shop-content');
+  
+    addForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+  
+      // Retrieve form input values
+      const ballNameInput = document.getElementById('ballNameInput');
+      const ballPriceInput = document.getElementById('ballPriceInput');
+      const inStockInput = document.getElementById('inStockInput');
+  
+      const ballName = ballNameInput.value;
+      const ballPrice = parseFloat(ballPriceInput.value);
+      const inStock = inStockInput.value === 'yes';
+  
+      // Create a new ball element
+      const newBallElement = document.createElement('div');
+      newBallElement.classList.add('product-box');
+      newBallElement.innerHTML = `
+
+        <h2 class="product-title">${ballName}</h2>
+        <span class="price">$${ballPrice.toFixed(2)}</span>
+        <i class="bx bx-shopping-bag add-cart"></i>
+        <p><span class="inStock">In Stock: ${inStock ? 'Yes' : 'No'}</span></p>
+      `;
+  
+      // Add the new ball element to the shop content
+      shopContent.appendChild(newBallElement);
+  
+      // Reset the form
+      addForm.reset();
+    });
+    const resetButton = document.getElementById('resetButton');
+    resetButton.addEventListener('click', function() {
+      addForm.reset();
+    });
+  });
+
+  
+  
